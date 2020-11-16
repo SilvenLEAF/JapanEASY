@@ -14,7 +14,7 @@ const SignupStrategy = require('./passportStrategies/SignupStrategy');
 const GithubStrategy = require('./passportStrategies/GithubStrategy');
 const GoogleStrategy = require('./passportStrategies/GoogleStrategy');
 const LinkedinStrategy = require('./passportStrategies/LinkedinStrategy');
- const TwitterStrategy = require('./passportStrategies/TwitterStrategy');
+//  const TwitterStrategy = require('./passportStrategies/TwitterStrategy');
 
 
 
@@ -57,5 +57,9 @@ passport.use('demo', DemoStrategy)
 
 passport.use(GoogleStrategy);
 passport.use(GithubStrategy);
-passport.use(TwitterStrategy);
 passport.use(LinkedinStrategy);
+
+
+
+
+// passport.use(TwitterStrategy);
