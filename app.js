@@ -3,13 +3,14 @@ const chalk = require('chalk');
 
 
 
-if(process.env.NODE_ENV !== 'production'){
-  // if we are on development, load development environmental variables
+// if(process.env.NODE_ENV !== 'production'){
+//   // if we are on development, load development environmental variables
+//   require('dotenv').config()
+// }
+
+
+
   require('dotenv').config()
-}
-
-
-
 
 
 
