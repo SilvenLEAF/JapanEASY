@@ -21,6 +21,9 @@ if(process.env.NODE_ENV !== 'production'){
 const express = require('express');
 const path = require('path');
 
+const passport = require('passport');
+const cookieSession = require('cookie-session');
+
 
 
 
@@ -43,6 +46,25 @@ app.use(express.static(path.join(__dirname, `client/build`)));
 
 
 
+// -------------------------COOKIE AND PASSPORT
+app.use(cookieSession({
+  maxAge: 24*60*60*1000,
+  keys: [`orehasaikyounizettainaru`],
+}));
+
+
+
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
+
+
+
+
+
 
 
 
@@ -54,6 +76,16 @@ app.use(express.static(path.join(__dirname, `client/build`)));
 /* -------------------------------------------------
 .                    config
 ------------------------------------------------- */
+require('./config/mongodbConfig');
+require('./config/passportConfig');
+
+
+
+
+
+
+
+
 
 
 
@@ -61,6 +93,18 @@ app.use(express.static(path.join(__dirname, `client/build`)));
 /* -------------------------------------------------
 .                    routes
 ------------------------------------------------- */
+//                  auth routes
+app.use(require('./routes/authRoutes/authRoute'));
+app.use(require('./routes/authRoutes/oauthRoute'));
+app.use('/user', require('./routes/authRoutes/userRoute'));
+
+
+
+//                  mail routes
+app.use(require('./routes/mailRoutes/ContactRoute'));
+app.use(require('./routes/mailRoutes/ResetPasswordRoute'));
+
+
 
 
 // CATCH ALL HANDLER
