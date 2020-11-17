@@ -12,7 +12,7 @@ const passport = require('passport');
 -------------------------------------- */
 router.get('/logout', (req, res)=>{
   req.logOut();
-  res.redirect('/');
+  res.json({ msg: `Logged out` });
 });
 
 

@@ -22,8 +22,14 @@ export const SignedInMobileLinks = ({ setUserData }) => {
       title: `Logging out...Please wait...`
     })    
  
-    fetch('/logout');
+    const response = await fetch('/logout');
+    const data = await response.json();
 
+    console.log(data);
+
+    setUserData(null)
+
+    history.push('/');
   }
 
 

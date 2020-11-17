@@ -32,52 +32,45 @@ function LogInForm() {
     
     try {
       
-    Toast.fire({
-      icon: 'info',
-      title: 'Logging in...Please wait...'
-    })
-
-    const oldUser = {};
-    if(email) oldUser.email = email;
-    if(password) oldUser.password = password;
-    
-    
-
-    
-
-
-    const loginRes = await fetch('/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(oldUser)
-    });
-    const loginData = await loginRes.json();
-
-    console.log(loginData)
-
-
-    
-    const loggedInUserRes = await fetch('/user');
-    const loggedInUserData = await loggedInUserRes.json();
-
-    console.log(loggedInUserData); 
-    
-    if(loggedInUserData.user){
-      setUserData(loggedInUserData.user);
-      history.push('/');
-    } else {
       Toast.fire({
-        icon: 'error',
-        title: loggedInUserData.msg
-      })    
-    }
+        icon: 'info',
+        title: 'Logging in...Please wait...'
+      })
+
+      const oldUser = {};
+      if(email) oldUser.email = email;
+      if(password) oldUser.password = password;
+      
+      
+
+      
+
+
+      const loginRes = await fetch('/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(oldUser)
+      });
+      const loginData = await loginRes.json();
+
+      console.log(loginData);
+
+
+      
+      const loggedInUserRes = await fetch('/user');
+      const loggedInUserData = await loggedInUserRes.json();
+
+      console.log(loggedInUserData); 
+      
+      if(loggedInUserData.user){
+        setUserData(loggedInUserData.user);
+        history.push('/');
+      } 
+      
     } catch (err) {
-      Toast.fire({
-        icon: 'error',
-        title: err.msg
-      })    
+      console.log(err);
     }
 
   }
