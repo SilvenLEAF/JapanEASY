@@ -28,7 +28,7 @@ function SignedInFooterLinks() {
       <div>
         <div className="myFooterIcons">
           <Link to="/search" >
-          <i className="fa fa-cogs"></i> DNS
+          <i className="fa fa-cogs"></i> ZG
           </Link>
         </div>          
       </div>

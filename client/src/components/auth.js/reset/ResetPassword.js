@@ -35,6 +35,7 @@ function ResetPassword() {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   
+  const [error, setError] = useState('');
 
 
   const handleSubmit = async (e)=>{
@@ -48,10 +49,7 @@ function ResetPassword() {
       })
       
       if(confirmPassword !== newPassword) {
-        return Toast.fire({
-          icon: 'error',
-          title: 'Type same password twice'
-        })
+        return setError('Type same password twice');
       };
         
       
@@ -64,25 +62,32 @@ function ResetPassword() {
       });
   
       const data = await response.json();
+
       console.log(data);
+
+
+      if(data.error) {
+        setError(data.msg);
+      } else {
+        Toast.fire({
+          icon: 'success',
+          title: 'Password Updated'
+        })
+  
+        history.pushState('/login');
+      }
   
   
   
       setNewPassword('');
-      Toast.fire({
-        icon: 'success',
-        title: 'Password Updated'
-      })
+      setConfirmPassword('');
+      
 
-      history.pushState('/login');
-
-    } catch (err) {
-      Toast.fire({
-        icon: 'error',
-        title: err.msg
-      })
-
+    } catch (err) {      
       console.log(err);
+
+      if(err.error) setError(err.msg);
+
     }
     
   }
@@ -92,6 +97,19 @@ function ResetPassword() {
 
 
 
+  useEffect(()=>{
+    if(error){
+      Toast.fire({
+        icon: 'error',
+        title: error
+      })
+    }
+  }, [error])
+
+
+
+
+  
 
 
 

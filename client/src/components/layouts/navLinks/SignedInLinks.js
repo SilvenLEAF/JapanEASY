@@ -19,7 +19,7 @@ export const SignedInMobileLinks = ({ setUserData }) => {
   const handleLogOut = async (e)=>{
     Toast.fire({
       icon: 'info',
-      title: `Logging out...Please wait...`
+      title: `Please wait...`
     });    
  
     const response = await fetch('/logout');

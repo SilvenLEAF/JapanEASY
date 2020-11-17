@@ -34,11 +34,11 @@ function LogInForm() {
       
       Toast.fire({
         icon: 'info',
-        title: 'Logging in...Please wait...'
+        title: 'Please wait...'
       })
 
       const oldUser = {};
-      if(email) oldUser.email = email;
+      if(email) oldUser.email = email.toLowerCase();
       if(password) oldUser.password = password;
       
       
@@ -54,6 +54,7 @@ function LogInForm() {
         body: JSON.stringify(oldUser)
       });
       const loginData = await loginRes.json();
+      if(loginData.error) setError(loginData.msg);
 
       console.log(loginData);
 
@@ -61,7 +62,7 @@ function LogInForm() {
       
       const loggedInUserRes = await fetch('/user');
       const loggedInUserData = await loggedInUserRes.json();
-
+      if(loggedInUserData.error) setError(loggedInUserData.msg);
       console.log(loggedInUserData); 
       
       if(loggedInUserData.user){
@@ -71,9 +72,27 @@ function LogInForm() {
       
     } catch (err) {
       console.log(err);
+
+      if(err.error){
+        setError(err.msg);
+      }
     }
 
   }
+
+
+
+
+  
+  useEffect(()=>{
+    if(error){
+      Toast.fire({
+        icon: 'error',
+        title: error
+      })
+    }
+  }, [error])
+
 
 
   if(userData) history.push('/');

@@ -18,7 +18,7 @@ function Profile() {
   }, [])
   
   
-  const { userData } = useContext(AuthContext);
+  const { userData, setUserData } = useContext(AuthContext);
   const history = useHistory();
 
   
@@ -39,7 +39,8 @@ function Profile() {
     const deletedProfileData = await deletedProfileRes.json();
 
     console.log(deletedProfileData)
-    window.location.href = `/login`
+    history.push('/login')
+    setUserData(null);
   }
 
 

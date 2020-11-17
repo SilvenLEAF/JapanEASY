@@ -28,6 +28,7 @@ function Contact() {
   
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [error, setError] = useState('');
 
 
   const handleSubmit = async (e)=>{
@@ -36,7 +37,7 @@ function Contact() {
     try {
       Toast.fire({
         icon: 'info',
-        title: 'Sending...Please wait...'
+        title: 'Please wait...'
       })
 
       const response = await fetch('/contact', {
@@ -48,19 +49,24 @@ function Contact() {
       })
     
       const data = await response.json();
+      
       console.log(data)
+      
+      if(data.error){
+        setError(data.msg);
+      } else {
+        Toast.fire({
+          icon: 'success',
+          title: 'Your message is sent.'
+        })
+      }
+
      
-      Toast.fire({
-        icon: 'success',
-        title: 'Your message is sent.'
-      })
+      
     } catch (err) {
-     
-      Toast.fire({
-        icon: 'error',
-        title: 'Oops, something went wrong!'
-      })
-      console.log(err);
+     console.log(err);
+
+     if(err.error) setError(err.msg);
     }
 
 
@@ -74,6 +80,14 @@ function Contact() {
 
 
 
+  useEffect(()=>{
+    if(error){
+      Toast.fire({
+        icon: 'error',
+        title: error
+      })
+    }
+  }, [error])
 
 
 

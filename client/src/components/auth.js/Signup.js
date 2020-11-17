@@ -35,7 +35,7 @@ function Signup() {
       
       Toast.fire({
         icon: 'info',
-        title: 'Logging in...Please wait...'
+        title: 'Please wait...'
       })
       
   
@@ -56,7 +56,7 @@ function Signup() {
       });
       
       const loginData = await loginRes.json();
-      if(loginData.error) setError(loginData.error);
+      if(loginData.error) setError(loginData.msg);
     
   
       
@@ -64,7 +64,7 @@ function Signup() {
   
       const loggedInUserRes = await fetch('/user');
       const loggedInUserData = await loggedInUserRes.json();
-      if(loggedInUserData.error) setError(loggedInUserData.error);
+      if(loggedInUserData.error) setError(loggedInUserData.msg);
   
 
       console.log(loggedInUserData); 
@@ -77,7 +77,7 @@ function Signup() {
     } catch (err) {
       console.log(err);
 
-      if(err.error) setError(err.error);
+      if(err.error) setError(err.msg);
     }
   }
 

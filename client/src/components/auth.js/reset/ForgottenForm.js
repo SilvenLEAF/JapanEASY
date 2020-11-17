@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 
 import { Toast } from '../../../helpers/MyAlerts'
-import swal from 'sweetalert';
+
 
 
 
@@ -31,7 +31,8 @@ function Forgotten() {
 
   
   const [email, setEmail] = useState('');
-  
+  const [error, setError] = useState('');
+
 
 
   const handleSubmit = async (e)=>{
@@ -54,24 +55,28 @@ function Forgotten() {
       });
   
       const data = await response.json();
-  
       console.log(data);
-  
-  
-  
-      setEmail('');
-      Toast.fire({
-        icon: 'success',
-        title: 'Check your email for further instructions'
-      })
+      
+      
+      if(data.error){
+        setError(data.msg);
+      } else {
+        setEmail('');
+        Toast.fire({
+          icon: 'success',
+          title: 'Check your email for further instructions'
+        })
 
+      }
+
+  
+  
+  
+      
     } catch (err) {
-      Toast.fire({
-        icon: 'error',
-        title: err.msg || `Oops, failed. Try again`
-      })
-
       console.log(err)
+
+      if(err.error) setError(err.msg);
     }
     
     
@@ -80,6 +85,14 @@ function Forgotten() {
 
 
 
+  useEffect(()=>{
+    if(error){
+      Toast.fire({
+        icon: 'error',
+        title: error
+      })
+    }
+  }, [error])
 
 
 
