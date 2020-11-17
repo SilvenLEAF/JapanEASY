@@ -35,7 +35,7 @@ router.post('/demo', (req, res, next)=>{
 
     req.logIn(user, (err)=>{
       // if there is an error while logging in
-      if(err) return res.status(500).json({ msg: `Oops, something went wrong`, error: err.message });
+      if(err) return res.status(500).json({ msg: `Oops, something went wrong`, error: err.message || true });
 
 
 
@@ -75,7 +75,7 @@ router.post('/signup', (req, res, next)=>{
 
     req.logIn(user, (err)=>{
       // if there is an error while logging in
-      if(err) return res.status(500).json({ msg: `Oops, something went wrong`, error: err.message });
+      if(err) return res.status(500).json({ msg: `Oops, something went wrong`, error: err.message || true });
 
 
 
@@ -126,7 +126,7 @@ router.post('/login', (req, res, next)=>{
 
    req.logIn(user, (err)=>{
     //  if there is an error while logging in
-    if(err) return res.status(500).json({ msg: `Oops, something went wrong`, error: err.message });
+    if(err) return res.status(500).json({ msg: `Oops, something went wrong`, error: err.message || true });
 
 
 

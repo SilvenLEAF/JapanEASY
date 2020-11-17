@@ -33,13 +33,13 @@ module.exports = LoginStrategy = new Strategy(
 
       
       // if the user does not exist
-      if(!user) return done({ msg: `No user found` }, null);
+      if(!user) return done({ msg: `No user found`, error: true }, null);
 
 
       
       // if password does not match
       const isPasswordValid = bcrypt.compareSync(password, user.local.password);
-      if(!isPasswordValid) return done({ msg: `Invalid Credentials` }, null);
+      if(!isPasswordValid) return done({ msg: `Invalid Credentials`, error: true }, null);
 
 
 

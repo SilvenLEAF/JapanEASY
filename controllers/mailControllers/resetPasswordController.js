@@ -36,7 +36,7 @@ module.exports.report_forgotten_password = async (req, res, next)=>{
       // find the user with the email sent from the frontEND
       const user = await User.findOne({ 'local.email': req.body.email });
 
-      if(!user) return res.status(422).json({ msg: `User does not exist` });
+      if(!user) return res.status(422).json({ msg: `User does not exist`, error: true });
 
       
       
@@ -132,7 +132,7 @@ module.exports.reset_old_password_with_new_one = async (req, res, next)=>{
     // find user by the token and expiration time
     const user = await User.findOne({ 'local.resetToken': token, 'local.resetTokenExpires': { $gt: Date.now() } });
     
-    if(!user) return res.status(422).json({ msg: `Try again session expired` });
+    if(!user) return res.status(422).json({ msg: `Try again session expired`, errr: true });
 
 
 

@@ -41,7 +41,7 @@ module.exports = SignupStrategy = new Strategy(
 
 
       // if the user already have an account
-      if(user) return done({ msg: `This email is already taken` }, null);
+      if(user) return done({ msg: `This email is already taken`, error: true }, null);
 
 
 
