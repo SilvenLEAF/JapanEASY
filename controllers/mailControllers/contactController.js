@@ -39,9 +39,15 @@ module.exports.users_contact_me_to_my_email_from_the_frontEND_form = async (req,
     
     // sending the mail to the my email account
     smtpTransport.sendMail(mailOptions, (err)=>{
-      console.log(`Email sent to my account. User contacted!`);
+      if(err) {
+        next(err, req, res);
+      } else {
+        console.log(`Email sent to my account. User contacted!`);
 
       res.json({ msg: `Your message is sent. Thanks for contacting!` })
+      }
+
+    
     })
 
   
