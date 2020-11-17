@@ -4,6 +4,7 @@ import '../../styles/Home.scss';
 
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { Toast } from '../../helpers/MyAlerts';
 
 
 
@@ -11,6 +12,10 @@ import { Link } from 'react-router-dom'
 function Home() {
   useEffect(()=>{
     M.AutoInit();
+    Toast.fire({
+      icon: 'success',
+      title: 'Your message is sent'
+    })
   }, [])
 
   

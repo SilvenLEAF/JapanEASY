@@ -4,7 +4,7 @@ import './../../styles/Form.scss'
 
 
 import React, { useEffect, useState } from 'react'
-import swal from 'sweetalert';
+import { Toast } from '../../helpers/MyAlerts';
 
 
 
@@ -18,7 +18,11 @@ import swal from 'sweetalert';
 function Contact() {
   useEffect(() => {
     M.AutoInit();
-  })
+    Toast.fire({
+      icon: 'question',
+      title: 'Welcome to contact page.'
+    })
+  }, [])
 
 
 
@@ -34,6 +38,11 @@ function Contact() {
     e.preventDefault();
   
     try {
+      Toast.fire({
+        icon: 'info',
+        title: 'Sending...Please wait...'
+      })
+
       const response = await fetch('/contact', {
         method: 'POST',
         headers: {
@@ -44,10 +53,17 @@ function Contact() {
     
       const data = await response.json();
       console.log(data)
-
-      swal("Sent", "Your message is sent. Thanks for contacting!","success");
+     
+      Toast.fire({
+        icon: 'success',
+        title: 'Your message is sent.'
+      })
     } catch (err) {
-      swal("Error", "Oops, something went wrong!","error");
+     
+      Toast.fire({
+        icon: 'error',
+        title: 'Oops, something went wrong!'
+      })
       console.log(err.message);
       console.log(err);
     }
