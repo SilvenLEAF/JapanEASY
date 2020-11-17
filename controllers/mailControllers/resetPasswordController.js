@@ -59,7 +59,7 @@ module.exports.report_forgotten_password = async (req, res, next)=>{
       const smtpTransport = nodemailer.createTransport({
         service: 'Gmail',
         auth: {
-          user: `ManashSarmaTheEmperor@gmail.com`,
+          user: `noreplyleaf@gmail.com`,
           pass: process.env.GMAIL_PASSWORD
         }
       });
@@ -72,7 +72,7 @@ module.exports.report_forgotten_password = async (req, res, next)=>{
       // the content of that email
       const mailOptions = {
         to: user.local.email,
-        from: 'ManashSarmaTheEmperor@gmail.com',
+        from: 'noreplyleaf@gmail.com',
 
         subject: `Password Reset`,
         text: `You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n
