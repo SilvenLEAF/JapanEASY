@@ -13,7 +13,7 @@ module.exports.users_contact_me_to_my_email_from_the_frontEND_form = async (req,
     const smtpTransport = nodemailer.createTransport({
       service: 'Gmail',
       auth: {
-        user: `appsofleaf@gmail.com`, //my backend will send the email from this account
+        user: `noreplyleaf@gmail.com`, //my backend will send the email from this account
         pass: process.env.GMAIL_PASSWORD
       }
     });
@@ -26,7 +26,7 @@ module.exports.users_contact_me_to_my_email_from_the_frontEND_form = async (req,
     // defining the content of the email (I mean what will be on the email)
     const mailOptions = {
       to: 'alvenleaf@gmail.com',
-      from: 'appsofleaf@gmail.com',
+      from: 'noreplyleaf@gmail.com',
 
       subject: title,
       text: content
