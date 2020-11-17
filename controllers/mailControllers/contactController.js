@@ -26,7 +26,7 @@ module.exports.users_contact_me_to_my_email_from_the_frontEND_form = async (req,
     // defining the content of the email (I mean what will be on the email)
     const mailOptions = {
       to: 'alvenleaf@gmail.com',
-      from: 'silvenleaf@gmail.com',
+      from: 'noreply@silvenleaf.com',
 
       subject: title,
       text: content

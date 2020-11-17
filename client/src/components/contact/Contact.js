@@ -33,21 +33,30 @@ function Contact() {
   const handleSubmit = async (e)=>{
     e.preventDefault();
   
-    const response = await fetch('/contact', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ title, content })
-    })
-  
-    const data = await response.json();
+    try {
+      const response = await fetch('/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ title, content })
+      })
+    
+      const data = await response.json();
+      console.log(data)
+
+      swal("Sent", "Your message is sent. Thanks for contacting!","success");
+    } catch (err) {
+      swal("Error", "Oops, something went wrong!","error");
+      console.log(err.message);
+      console.log(err);
+    }
 
 
 
     setTitle('');
     setContent('')
-    swal("Sent", "Your message is sent. Thanks for contacting!","success");    
+    
   }
 
 
