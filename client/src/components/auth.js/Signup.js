@@ -2,12 +2,12 @@ import M from 'materialize-css'
 import '../../styles/AuthDoor.scss'
 
 
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 
 
 import { AuthContext } from '../../contexts/subContexts/AuthContext'
-
+import { Toast } from '../../helpers/MyAlerts'
 
 
 
@@ -25,48 +25,60 @@ function Signup() {
   const { userData, setUserData } = useContext(AuthContext);
   const history = useHistory();
 
+  const [error, setError] = useState('')
 
 
   const demoLogin = async (e)=>{
     e.preventDefault();
-    console.log('started demo login')
 
-    const demoUser = { email: `demo@gmail.com`, password: `123456Aa` };
+    try {
+      
+      Toast.fire({
+        icon: 'info',
+        title: 'Logging in...Please wait...'
+      })
+      
+  
+      const demoUser = { email: `demo@gmail.com`, password: `0123456789` };
+      
+      
+      
+  
+      
+  
+  
+      const loginRes = await fetch('/demo', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(demoUser)
+      });
+      
+      const loginData = await loginRes.json();
+      if(loginData.error) setError(loginData.error);
     
-    
-    
+  
+      
+  
+  
+      const loggedInUserRes = await fetch('/user');
+      const loggedInUserData = await loggedInUserRes.json();
+      if(loggedInUserData.error) setError(loggedInUserData.error);
+  
 
-    
+      console.log(loggedInUserData); 
+      
+      if(loggedInUserData.user){
+        setUserData(loggedInUserData.user);
+        history.push('/');
+      }
+  
+    } catch (err) {
+      console.log(err);
 
-
-    const loginRes = await fetch('/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(demoUser)
-    });
-    const loginData = await loginRes.json();
-
-    console.log(loginData)
-
-
-
-
-    setUserData(loginData)
-
-
-
-    const loggedInUserRes = await fetch('/user');
-    const loggedInUserData = await loggedInUserRes.json();
-
-    console.log(loggedInUserData); 
-    
-    if(loggedInUserData.user){
-      setUserData(loggedInUserData.user);
+      if(err.error) setError(err.error);
     }
-    history.push('/');
-
   }
 
 

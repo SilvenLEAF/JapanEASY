@@ -2,7 +2,7 @@ import M from 'materialize-css'
 import '../../styles/AuthDoor.scss'
 
 
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect, useContext, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 
 
@@ -17,12 +17,17 @@ import { Toast } from '../../helpers/MyAlerts'
 function Login() {
   useEffect(()=>{
     M.AutoInit();
-  })
+  }, []);
+
+  
 
   
 
   const { userData, setUserData } = useContext(AuthContext);
   const history = useHistory();
+
+
+  const [error, setError] = useState('');
 
 
 
@@ -32,6 +37,7 @@ function Login() {
     e.preventDefault();
 
     try {
+      
       Toast.fire({
         icon: 'info',
         title: 'Logging in...Please wait...'
@@ -53,37 +59,44 @@ function Login() {
         },
         body: JSON.stringify(demoUser)
       });
+      
       const loginData = await loginRes.json();
+      if(loginData.error) setError(loginData.error);
+    
   
       
   
   
       const loggedInUserRes = await fetch('/user');
       const loggedInUserData = await loggedInUserRes.json();
+      if(loggedInUserData.error) setError(loggedInUserData.error);
   
+
       console.log(loggedInUserData); 
       
       if(loggedInUserData.user){
         setUserData(loggedInUserData.user);
         history.push('/');
-      } else {
-        Toast.fire({
-          icon: 'error',
-          title: loggedInUserData.msg
-        })
       }
   
     } catch (err) {
-      Toast.fire({
-        icon: 'error',
-        title: err.msg
-      })
+      console.log(err);
+
+      if(err.error) setError(err.error);
     }
   }
 
 
 
 
+  useEffect(()=>{
+    if(error){
+      Toast.fire({
+        icon: 'error',
+        title: error
+      })
+    }
+  }, [error])
 
   if(userData) history.push('/')
 
