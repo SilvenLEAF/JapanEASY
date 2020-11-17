@@ -5,7 +5,11 @@ import '../../styles/AuthForm.scss'
 
 import React, { useContext, useEffect, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
+
 import { AuthContext } from '../../contexts/subContexts/AuthContext'
+import { Toast } from '../../helpers/MyAlerts'
+
+
 
 
 function LogInForm() {
@@ -25,7 +29,13 @@ function LogInForm() {
 
   const handleSubmit = async (e)=>{
     e.preventDefault();
-    console.log('started login')
+    
+    try {
+      
+    Toast.fire({
+      icon: 'info',
+      title: 'Logging in...Please wait...'
+    })
 
     const oldUser = {};
     if(email) oldUser.email = email;
@@ -48,12 +58,7 @@ function LogInForm() {
     console.log(loginData)
 
 
-    if(loginData.msg) return setError(loginData.msg);
-
-    setUserData(loginData)
-
-
-
+    
     const loggedInUserRes = await fetch('/user');
     const loggedInUserData = await loggedInUserRes.json();
 
@@ -61,8 +66,19 @@ function LogInForm() {
     
     if(loggedInUserData.user){
       setUserData(loggedInUserData.user);
+      history.push('/');
+    } else {
+      Toast.fire({
+        icon: 'error',
+        title: loggedInUserData.msg
+      })    
     }
-    history.push('/');
+    } catch (err) {
+      Toast.fire({
+        icon: 'error',
+        title: err.msg
+      })    
+    }
 
   }
 
@@ -74,7 +90,7 @@ function LogInForm() {
     <div className="container myAuthForm" >
       <div className="myAuthAppName">LingHun</div>
       <div className="myAuthTitle">Log in to your account</div>
-      <p className="center-align red-text"> { error } </p>
+      
 
 
       <form onSubmit={ handleSubmit } >

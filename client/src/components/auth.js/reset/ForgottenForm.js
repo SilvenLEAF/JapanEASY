@@ -4,8 +4,11 @@ import './../../../styles/Form.scss'
 
 
 import React, { useEffect, useState } from 'react'
-import swal from 'sweetalert';
 import { Link } from 'react-router-dom';
+
+
+import { Toast } from '../../../helpers/MyAlerts'
+import swal from 'sweetalert';
 
 
 
@@ -19,7 +22,7 @@ import { Link } from 'react-router-dom';
 function Forgotten() {
   useEffect(() => {
     M.AutoInit();
-  })
+  }, [])
 
 
 
@@ -33,24 +36,45 @@ function Forgotten() {
 
   const handleSubmit = async (e)=>{
     e.preventDefault();
+
+  
+    try {
+
+      Toast.fire({
+        icon: 'info',
+        title: 'Please wait...'
+      })
+
+      const response = await fetch('/forgottenPassword', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email })
+      });
+  
+      const data = await response.json();
+  
+      console.log(data);
   
   
-    const response = await fetch('/forgottenPassword', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ email })
-    });
+  
+      setEmail('');
+      Toast.fire({
+        icon: 'success',
+        title: 'Check your email for further instructions'
+      })
 
-    const data = await response.json();
+    } catch (err) {
+      Toast.fire({
+        icon: 'error',
+        title: err.msg || `Oops, failed. Try again`
+      })
 
-    console.log(data);
-
-
-
-    setEmail('');
-    swal("See your email", "See your email for further instructions. It may take some time to send the email. Wait 5 to 10mins","success");    
+      console.log(err)
+    }
+    
+    
   }
 
 

@@ -7,6 +7,7 @@ import { NavLink } from 'react-router-dom'
 
 
 export const SignedOutMobileLinks = () => {
+  
   return (
     <>
       <li><NavLink to="/" className="sidenav-close" ><i className="fa fa-home"></i>Home</NavLink></li>

@@ -17,11 +17,7 @@ import { Toast } from '../../helpers/MyAlerts';
 
 function Contact() {
   useEffect(() => {
-    M.AutoInit();
-    Toast.fire({
-      icon: 'question',
-      title: 'Welcome to contact page.'
-    })
+    M.AutoInit();    
   }, [])
 
 
@@ -64,7 +60,6 @@ function Contact() {
         icon: 'error',
         title: 'Oops, something went wrong!'
       })
-      console.log(err.message);
       console.log(err);
     }
 

@@ -4,8 +4,11 @@ import './../../../styles/Form.scss'
 
 
 import React, { useEffect, useState } from 'react'
-import swal from 'sweetalert';
 import { Link, useHistory, useParams } from 'react-router-dom';
+
+
+import { Toast } from '../../../helpers/MyAlerts';
+
 
 
 
@@ -19,42 +22,69 @@ import { Link, useHistory, useParams } from 'react-router-dom';
 function ResetPassword() {
   useEffect(() => {
     M.AutoInit();
-  })
+  }, [])
 
 
 
   const { token } = useParams();
+  const history = useHistory();
   
 
 
   
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
+  
 
 
   const handleSubmit = async (e)=>{
     e.preventDefault();
-  
-    if(confirmPassword !== newPassword) return setError('Type the same password twice');
+
+    try {
       
+      Toast.fire({
+        icon: 'info',
+        title: 'Please wait...'
+      })
+      
+      if(confirmPassword !== newPassword) {
+        return Toast.fire({
+          icon: 'error',
+          title: 'Type same password twice'
+        })
+      };
+        
+      
+      const response = await fetch('/resetPassword', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ newPassword, token })
+      });
+  
+      const data = await response.json();
+      console.log(data);
+  
+  
+  
+      setNewPassword('');
+      Toast.fire({
+        icon: 'success',
+        title: 'Password Updated'
+      })
+
+      history.pushState('/login');
+
+    } catch (err) {
+      Toast.fire({
+        icon: 'error',
+        title: err.msg
+      })
+
+      console.log(err);
+    }
     
-    const response = await fetch('/resetPassword', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ newPassword, token })
-    });
-
-    const data = await response.json();
-
-    console.log(data);
-
-
-
-    setNewPassword('');
-    swal("See your password", "See your password for further instructions. It may take some time to send the password. Wait 5 to 10mins","success");    
   }
 
 
@@ -73,6 +103,7 @@ function ResetPassword() {
       <form onSubmit= { handleSubmit } className="myDefaultForm" >
         <h6 className="myDefaultFormName" >Reset your Password</h6>
 
+        
 
 
 

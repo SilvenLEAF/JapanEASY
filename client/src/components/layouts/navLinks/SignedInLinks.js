@@ -3,7 +3,7 @@ import { NavLink, useHistory } from 'react-router-dom'
 
 
 
-
+import { Toast } from '../../../helpers/MyAlerts'
 
 
 
@@ -16,12 +16,15 @@ export const SignedInMobileLinks = ({ setUserData }) => {
   const history = useHistory();
 
 
-  const handleLogout = ()=>{
-    console.log('started log out')
-    
-    window.location.href = '/logout'
-  }
+  const handleLogOut = async (e)=>{
+    Toast.fire({
+      icon: 'info',
+      title: `Logging out...Please wait...`
+    })    
+ 
+    fetch('/logout');
 
+  }
 
 
   return (
@@ -31,7 +34,7 @@ export const SignedInMobileLinks = ({ setUserData }) => {
       <li><NavLink to="/allUsers" className="sidenav-close" ><i className="fa fa-users"></i>All Users</NavLink></li>
       <li><NavLink to="/contact" className="sidenav-close" ><i className="fa fa-envelope"></i>Contact Me</NavLink></li>
       
-      <li onClick={ handleLogout } ><NavLink to="/" className="sidenav-close" ><i className="fa fa-sign-out"></i>Log out</NavLink></li>
+      <li onClick={ handleLogOut } ><NavLink to="/" className="sidenav-close" ><i className="fa fa-sign-out"></i>Log out</NavLink></li>
       <li><a target="_blank" rel="noopener noreferrer" href="https://silvenleaf.github.io" className="sidenav-close" ><i className="fa fa-info"></i>About Me</a></li>
     </>
   )
