@@ -61,7 +61,7 @@ body{
 .pageTitle {  
   margin: 25px 0px;
 
-  font-size: 270%;
+  // font-size: 270%;
   font-weight: 800;
   font-family: Dosis, sans-serif;
 }
@@ -390,6 +390,19 @@ input[type=text]:focus,  input[type=number]:focus,  input[type=email]:focus,  in
 
  
 /* --------------------------------------
+.             BUTTONS HOLDER
+-------------------------------------- */
+.myBtnsHolder.right-align {
+  margin-top: 20px;
+  > .btn {
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+}
+  
+  
+  
+  /* --------------------------------------
 .             DEFAULT BUTTONS
 -------------------------------------- */
 .btn.myBtn {
@@ -409,6 +422,29 @@ input[type=text]:focus,  input[type=number]:focus,  input[type=email]:focus,  in
 }
 
 
+.myCornerless {
+  border-radius: 30px !important;
+}
+
+
+
+.btn.mySecondaryBtn {
+  color: #333 !important;
+  font-weight: 500;
+  background-color: $secondaryBtnColor !important;
+  &:visited {
+    background-color: $secondaryBtnColor !important;
+  }
+  &:active {
+    background-color: $secondaryBtnColor !important;
+  }
+  &:focus {
+    background-color: $secondaryBtnColor !important;
+  }
+  &:hover {
+    background-color: darken($secondaryBtnColor, 10) !important;
+  }
+}
 
 
 
