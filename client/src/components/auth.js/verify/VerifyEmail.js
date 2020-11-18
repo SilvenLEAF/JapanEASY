@@ -39,7 +39,7 @@ function VerifyEmail() {
   const [error, setError] = useState('');
 
 
-  const handleVerify = async (e)=>{
+  const handleVerify = (e)=>{
     
 
     try {
@@ -49,7 +49,7 @@ function VerifyEmail() {
         title: 'Please wait...'
       })
       
-      setTimeout(()=>{
+      setTimeout( async()=>{
         const response = await fetch('/verifyEmail', {
           method: 'POST',
           headers: {
