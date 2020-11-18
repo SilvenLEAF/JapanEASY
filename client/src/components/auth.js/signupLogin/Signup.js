@@ -1,13 +1,13 @@
 import M from 'materialize-css'
-import '../../styles/AuthDoor.scss'
+import '../../../styles/AuthDoor.scss'
 
 
 import React, { useEffect, useState, useContext } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 
 
-import { AuthContext } from '../../contexts/subContexts/AuthContext'
-import { Toast } from '../../helpers/MyAlerts'
+import { AuthContext } from '../../../contexts/subContexts/AuthContext'
+import { Toast } from '../../../helpers/MyAlerts'
 
 
 

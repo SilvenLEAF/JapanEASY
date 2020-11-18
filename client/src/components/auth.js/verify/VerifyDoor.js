@@ -1,6 +1,5 @@
 import M from 'materialize-css'
-import '../../styles/Form.scss';
-import '../../styles/Search.scss';
+import '../../../styles/Form.scss';
 
 
 import React, { useEffect, useState } from 'react'
@@ -9,7 +8,7 @@ import { Link } from 'react-router-dom'
 
 
 
-function Search() {
+function VerifyDoor() {
   useEffect(()=>{
     M.AutoInit();
   }, [])
@@ -25,4 +24,4 @@ function Search() {
   )
 }
 
-export default Search
+export default VerifyDoor

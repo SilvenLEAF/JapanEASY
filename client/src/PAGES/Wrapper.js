@@ -1,11 +1,14 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom';
-import Login from '../components/auth.js/Login';
-import Signup from '../components/auth.js/Signup';
-import LogInForm from '../components/auth.js/LogInForm';
-import SignUpForm from '../components/auth.js/SignUpForm';
+import Login from '../components/auth.js/signupLogin/Login';
+import Signup from '../components/auth.js/signupLogin/Signup';
+import LogInForm from '../components/auth.js/signupLogin/LogInForm';
+import SignUpForm from '../components/auth.js/signupLogin/SignUpForm';
 
 
+import Forgotten from '../components/auth.js/reset/ForgottenForm';
+import ResetPassword from '../components/auth.js/reset/ResetPassword';
+import VerifyDoor from '../components/auth.js/verify/VerifyDoor';
 
 
 import Home from '../components/home/Home'
@@ -15,8 +18,7 @@ import UserList from '../components/profile/UserList';
 import UpdateProfile from '../components/profile/UpdateProfile';
 import UserProfile from '../components/profile/UserProfile';
 import Search from '../components/search/Search';
-import Forgotten from '../components/auth.js/reset/ForgottenForm';
-import ResetPassword from '../components/auth.js/reset/ResetPassword';
+
 
 
 
@@ -36,8 +38,12 @@ function Wrapper() {
       <Route path="/signupForm" component={SignUpForm} />
 
       
+      <Route path="/verifyDoor" component={VerifyDoor} />
+
+
       <Route path="/forgotten" component={Forgotten} />
       <Route path="/reset/:token" component={ResetPassword} />
+
 
 
       <Route path="/profile" component={Profile} />
