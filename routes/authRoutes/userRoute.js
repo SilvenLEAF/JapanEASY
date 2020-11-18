@@ -30,6 +30,7 @@ router.get('/all', isLoggedin, userController.get_all_users);
 router.delete('/', isLoggedin, DeleteAccount, userController.delete_account);
 router.put('/', isLoggedin, UpdateAccount, userController.update_account);
 
+router.put('/changeEmail', isLoggedin, UpdateAccount, userController.change_email);
 
 
 

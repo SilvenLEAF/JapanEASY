@@ -27,6 +27,35 @@ module.exports.get_all_users = async (req, res, next)=>{
 
 
 
+/* ------------------------------------
+.   CHANGE EMAIL (in VERIFICATION)
+------------------------------------ */
+module.exports.change_email = async (req, res, next)=>{
+  try{
+    const { email } = req.body;
+
+    await User.findByIdAndUpdate(req.user._id, { 'local.email': email });
+    const updatedUser = await User.findById(req.user._id);
+    req.json(updatedUser);
+  } catch(err){
+    next(err, req, next);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* ------------------------------------
 .           DELETE ACCOUNT
@@ -61,6 +90,7 @@ module.exports.update_account = async (req, res, next)=>{
 
     await User.findByIdAndUpdate(userId, req.body);
     const updatedUser = await User.findById(req.user._id);
+    req.json(updatedUser);
   }catch(err){
     next(err, req, res);
   }
