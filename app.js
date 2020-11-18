@@ -104,6 +104,7 @@ app.use('/user', require('./routes/authRoutes/userRoute'));
 //                  mail routes
 app.use(require('./routes/mailRoutes/ContactRoute'));
 app.use(require('./routes/mailRoutes/ResetPasswordRoute'));
+app.use(require('./routes/mailRoutes/VerifyEmailRoute'));
 
 
 

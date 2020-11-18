@@ -14,9 +14,9 @@ const nodemailer = require('nodemailer');       // this is for sending email
 
 
 /* --------------------------------------------
-.            REPORT FORGOTTEN PASSWORD
+.            REQUEST VERIFICATION
 -------------------------------------------- */
-module.exports.report_forgotten_password = async (req, res, next)=>{
+module.exports.request_verification = async (req, res, next)=>{
   try {
     
 
@@ -34,15 +34,15 @@ module.exports.report_forgotten_password = async (req, res, next)=>{
 
 
       // find the user with the email sent from the frontEND
-      const user = await User.findOne({ 'local.email': req.body.email });
+      const user = await User.findOne({ 'local.email': req.user.local.email });
 
       if(!user) return res.status(422).json({ msg: `User does not exist`, error: true });
 
       
       
       // save token with its expiration time on that user's model
-      user.local.resetToken = token;
-      user.local.resetTokenExpires = Date.now() + 3600000;
+      user.local.verificationToken = token;
+      user.local.verificationTokenExpires = Date.now() + 3600000;
 
       await user.save()
 
@@ -54,7 +54,7 @@ module.exports.report_forgotten_password = async (req, res, next)=>{
 
 
 
-      // send an email to the user's email account with the password reset link that is valid for only one hour
+      // send an email to the user's email account with the verification link that is valid for only one hour
       //                   creatting the postman that will deliver our email
       const smtpTransport = nodemailer.createTransport({
         service: 'Gmail',
@@ -75,10 +75,10 @@ module.exports.report_forgotten_password = async (req, res, next)=>{
         from: 'noreplyleaf@gmail.com',
 
         subject: `Password Reset`,
-        text: `You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n
+        text: `You are receiving this because you (or someone else) have requested the verification of the email for your account.\n\n
         Please click on the following link, or paste this into your browser to complete the process: \n\n
         ${ 'http://' + req.headers.host + '/reset/' + token } \n\n
-        If you did not request this, please ignore this email and your password will remain unchanged. \n`
+        If you did not request this, please ignore this email. \n`
       }
 
 
@@ -88,7 +88,7 @@ module.exports.report_forgotten_password = async (req, res, next)=>{
 
       // sending the mail to the user's email
       smtpTransport.sendMail(mailOptions, (err)=>{
-        console.log(`Mail with password reset link is sent`);
+        console.log(`Mail with password verification link is sent`);
         res.json({ msg: `Check your email` })
       })
 
@@ -119,18 +119,18 @@ module.exports.report_forgotten_password = async (req, res, next)=>{
 
 
 /* --------------------------------------------
-.            RESET THE OLD PASSWORD
+.            VERIFY ACCOUNT (EMAIL)
 -------------------------------------------- */
-module.exports.reset_old_password_with_new_one = async (req, res, next)=>{
+module.exports.verify_email = async (req, res, next)=>{
   try {
-    const { newPassword, token } = req.body;
+    const { token } = req.body;
 
     
     
     
     
     // find user by the token and expiration time
-    const user = await User.findOne({ 'local.resetToken': token, 'local.resetTokenExpires': { $gt: Date.now() } });
+    const user = await User.findOne({ 'local.verificationToken': token, 'local.verificationTokenExpires': { $gt: Date.now() } });
     
     if(!user) return res.status(422).json({ msg: `Try again session expired`, error: true });
 
@@ -138,9 +138,9 @@ module.exports.reset_old_password_with_new_one = async (req, res, next)=>{
 
 
     // if there is a user, change their password and reset the resetToken and expiration time
-    user.local.password = bcrypt.hashSync(newPassword, bcrypt.genSaltSync());
-    user.local.resetToken = undefined;
-    user.local.resetTokenExpires = undefined;
+    user.isVerified = true;
+    user.local.verificationToken = undefined;
+    user.local.verificationTokenExpires = undefined;
 
 
 
@@ -148,7 +148,7 @@ module.exports.reset_old_password_with_new_one = async (req, res, next)=>{
     const savedUser = await user.save();
     
     
-    res.json({ msg: `Password updated` });
+    res.json({ msg: `Email verified` });
 
 
 
