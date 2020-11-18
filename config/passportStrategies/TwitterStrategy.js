@@ -35,6 +35,7 @@ module.exports = TwitterStrategy = new Strategy(
         username: profile.displayName,
         profileImage: profile.photos[0].value,
         createdAt: new Date(),
+        isVerified: true,
 
         'twitter.twitterId': profile.id,
         

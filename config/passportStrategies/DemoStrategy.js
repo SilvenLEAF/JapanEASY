@@ -59,6 +59,7 @@ module.exports = DemoStrategy = new Strategy(
 
         createdAt: new Date(),
         role: 'demo',
+        isVerified: true,
         
         username: 'Monkey D Luffy',
         profileImage: '/images/users/Demo.png',

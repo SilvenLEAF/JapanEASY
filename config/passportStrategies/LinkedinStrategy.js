@@ -33,7 +33,10 @@ module.exports = LinkedinStrategy = new Strategy(
       User.create({
         username: profile.displayName,
         profileImage: profile.photos[1].value || profile.photos[0].value,
+        
         createdAt: new Date(),
+        isVerified: true,
+        email: profile.emails[0].value,
 
         'linkedin.linkedinId': profile.id,
         'linkedin.email': profile.emails[0].value,

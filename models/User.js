@@ -78,11 +78,7 @@ const LocalSchema = new mongoose.Schema({
   email: String,
   password: String,
   
-  isVerified: {
-    type: Boolean,
-    default: false
-  },
-  
+    
   resetToken: String,
   resetTokenExpires: Date,
   
@@ -135,6 +131,11 @@ const UserSchema = new mongoose.Schema({
     type: String,
     default: 'user',
   },
+  isVerified: {
+    type: Boolean,
+    default: false
+  },
+  email: String,
 
 
 
