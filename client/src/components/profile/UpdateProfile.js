@@ -8,6 +8,7 @@ import { Link, useHistory } from 'react-router-dom';
 
 
 import { AuthContext } from '../../contexts/subContexts/AuthContext';
+import { Toast } from '../../helpers/MyAlerts'
 
 
 
@@ -41,7 +42,10 @@ function UpdateProfile() {
 
   const handleSubmit = async (e)=>{
     e.preventDefault();
-
+    Toast.fire({
+      icon: 'info',
+      title: 'Please wait...'
+    })
     
     const updateObj = {};
     updateObj.userId = userData._id;
@@ -59,7 +63,7 @@ function UpdateProfile() {
     if(twitterHandle) updateObj.twitterHandle = twitterHandle;
     
 
-    console.log('update started');
+    
 
 
     if(userData.role === 'demo'){
@@ -87,7 +91,9 @@ function UpdateProfile() {
 
 
     
-    history.push('/profile')
+    setTimeout(()=>{
+      history.push('/profile')
+    }, 3000)
   }
   
 

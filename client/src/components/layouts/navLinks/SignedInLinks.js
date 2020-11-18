@@ -27,9 +27,11 @@ export const SignedInMobileLinks = ({ setUserData }) => {
 
     console.log(data);
 
-    setUserData(null)
+    setTimeout(()=>{
+      setUserData(null)
 
-    history.push('/');
+      history.push('/');
+    }, 3000)
   }
 
 
@@ -62,11 +64,22 @@ export const SignedInPCLinks = ({ setUserData }) => {
 
   const history = useHistory();
 
-  const handleLogout = ()=>{
-    setUserData({
-      user: undefined,
-    });
-    history.push('/')
+  const handleLogOut = async (e)=>{
+    Toast.fire({
+      icon: 'info',
+      title: `Please wait...`
+    });    
+ 
+    const response = await fetch('/logout');
+    const data = await response.json();
+
+    console.log(data);
+
+    setTimeout(()=>{
+      setUserData(null)
+
+      history.push('/');
+    }, 3000)
   }
 
 
@@ -78,7 +91,7 @@ export const SignedInPCLinks = ({ setUserData }) => {
       <li><NavLink to="/allUsers" >All Users</NavLink></li>           
       <li><NavLink to="/contact">Contact Me</NavLink></li>           
       
-      <li onClick={ handleLogout } ><NavLink to="/" className="sidenav-close" >Log out</NavLink></li>
+      <li onClick={ handleLogOut } ><NavLink to="/" className="sidenav-close" >Log out</NavLink></li>
       <li><a target="_blank" rel="noopener noreferrer" href="https://silvenleaf.github.io" >About Me</a></li>
     </>
   )

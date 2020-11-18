@@ -75,7 +75,9 @@ function ResetPassword() {
           title: 'Password Updated'
         })
   
-        history.push('/login');
+        setTimeout(()=>{
+          history.push('/login');
+        }, 3000)
       }
   
   

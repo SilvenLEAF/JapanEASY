@@ -8,7 +8,7 @@ import moment from 'moment'
 
 
 import { AuthContext } from '../../contexts/subContexts/AuthContext';
-
+import { Toast } from '../../helpers/MyAlerts'
 
 
 
@@ -26,6 +26,11 @@ function Profile() {
   const deleteProfile = async (e) =>{
     e.preventDefault();
 
+    Toast.fire({
+      icon: 'info',
+      title: 'Please wait...'
+    })
+
     const userId = userData._id;
     
     const deletedProfileRes = await fetch('/user/', {
@@ -39,8 +44,11 @@ function Profile() {
     const deletedProfileData = await deletedProfileRes.json();
 
     console.log(deletedProfileData)
-    history.push('/login')
-    setUserData(null);
+    
+    setTimeout(()=>{
+      history.push('/login')
+      setUserData(null);
+    }, 3000)
   }
 
 

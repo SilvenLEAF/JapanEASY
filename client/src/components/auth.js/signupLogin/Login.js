@@ -41,7 +41,7 @@ function Login() {
       Toast.fire({
         icon: 'info',
         title: 'Please wait...'
-      })
+      });
       
   
       const demoUser = { email: `demo@gmail.com`, password: `0123456789` };
@@ -76,7 +76,10 @@ function Login() {
       
       if(loggedInUserData.user){
         setUserData(loggedInUserData.user);
-        history.push('/');
+        
+        setTimeout(()=>{
+          history.push('/');
+        }, 3000)
       }
   
     } catch (err) {

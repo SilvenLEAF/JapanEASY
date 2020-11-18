@@ -115,7 +115,10 @@ function SignUpForm() {
       
       if(loggedInUserData.user){
         setUserData(loggedInUserData.user);
-        history.push('/');
+        
+        setTimeout(()=>{
+          history.push('/');
+        }, 3000)
       }
   
     } catch (err) {

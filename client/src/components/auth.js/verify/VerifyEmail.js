@@ -72,7 +72,9 @@ function VerifyEmail() {
           title: 'Account Verified'
         })
   
-        history.push('/');
+        setTimeout(()=>{
+          history.push('/');
+        }, 3000)
       }
   
   
