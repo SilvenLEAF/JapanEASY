@@ -28,7 +28,7 @@ function VerifyEmail() {
   }, [])
 
 
-  const { userData } = useContext(AuthContext);
+  const { userData, setUserData } = useContext(AuthContext);
 
   const { token } = useParams();
   const history = useHistory();
@@ -66,6 +66,7 @@ function VerifyEmail() {
       if(data.error) {
         setError(data.msg);
       } else {
+        setUserData(data);
         Toast.fire({
           icon: 'success',
           title: 'Account Verified'
