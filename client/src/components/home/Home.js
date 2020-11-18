@@ -20,12 +20,12 @@ function Home() {
 
       <div id="myLandingIcon"></div>
       <div className="myLandingContentHolder">
-        <div id="myLandingTitle" className="pageTitle">
+        <h1 id="myLandingTitle" className="pageTitle">
           LingHun
-        </div>
+        </h1>
         
         <div className="myLandingDescription">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa reprehenderit error nihil officiis reiciendis debitis ipsa, placeat doloribus delectus unde omnis saepe facere vitae voluptatibus!
+          This is the SOUL and LING HUN of my future app. It's the spirit and core for all my future self. It's LING HUN, the SOUL of my future.
         </div>
 
         <div className="myLandingBtnHolder">
