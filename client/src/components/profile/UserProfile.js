@@ -39,7 +39,7 @@ function UserProfile(props) {
       <div className="myProfileMainHeader">
         <div className="myProfileUserName">{ item.username }</div>
         <div className="myProfileTitle" >{ item.title }</div>
-        <div className="myProfileLocation red-text"> { item.location } </div>
+        <div className="myProfileLocation red-text"> { item.location } </div>        
       </div>
 
 
@@ -135,6 +135,17 @@ function UserProfile(props) {
           { item.twitterHandle ? item.twitterHandle : (
               <span className="red-text">no info given</span>
             ) }
+          </div>
+        </div>
+
+
+
+        <div>
+          <div className="myProfileInfoTitle">
+            <i className="fa fa-info-circle"></i> Verified
+          </div>
+          <div className="myProfileInfoAnswer">
+          { item.isVerified ? `Unverified account` : `Verified account` }
           </div>
         </div>
 
