@@ -63,7 +63,7 @@ function Navbar() {
             {
               userData && (
               <Link to="/profile" className="btn-floating center pulse myProfileNavIcon">             
-                { userData && userData.username[0] }
+                { userData && userData.username[0].toUpperCase() }
               </Link>
               )
             }
@@ -79,7 +79,7 @@ function Navbar() {
             {
               userData && (
                 <Link to="/profile" className="btn-floating center pulse myProfileNavIcon">
-                  { userData && userData.username[0] }
+                  { userData && userData.username[0].toUpperCase() }
                 </Link>
                 )
               }

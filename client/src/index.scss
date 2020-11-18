@@ -85,11 +85,11 @@ body{
   font-weight: 500;
 
   .myProfileNavIcon{
-    background-color: $bodyBG;
-    color: $themeColor;
-    font-family: Dosis;
-    font-weight: 700;
-    font-size: 170%;
+    background-color: $bodyBG !important;
+    color: $themeColor !important;
+    font-family: Dosis !important;
+    font-weight: 700 !important;
+    font-size: 170% !important;
     
   }
 
@@ -392,7 +392,8 @@ input[type=text]:focus,  input[type=number]:focus,  input[type=email]:focus,  in
 /* --------------------------------------
 .             BUTTONS HOLDER
 -------------------------------------- */
-.myBtnsHolder {
+.myBtnsHolder.left-align {
+  margin: 0;
   margin-top: 20px;
   > .btn {
     margin-top: 20px;
@@ -401,6 +402,7 @@ input[type=text]:focus,  input[type=number]:focus,  input[type=email]:focus,  in
 }
 
 .myBtnsHolder.right-align {
+  margin: 0;
   margin-top: 20px;
   > .btn {
     margin-top: 20px;
@@ -409,6 +411,7 @@ input[type=text]:focus,  input[type=number]:focus,  input[type=email]:focus,  in
 }
 
 .myBtnsHolder.center-align {
+  margin: 0;
   margin-top: 20px;
   > .btn {
     margin-top: 0px;
