@@ -392,11 +392,26 @@ input[type=text]:focus,  input[type=number]:focus,  input[type=email]:focus,  in
 /* --------------------------------------
 .             BUTTONS HOLDER
 -------------------------------------- */
+.myBtnsHolder {
+  margin-top: 20px;
+  > .btn {
+    margin-top: 20px;
+    margin-right: 20px;
+  }
+}
+
 .myBtnsHolder.right-align {
   margin-top: 20px;
   > .btn {
     margin-top: 20px;
     margin-left: 20px;
+  }
+}
+
+.myBtnsHolder.center-align {
+  margin-top: 20px;
+  > .btn {
+    margin-top: 0px;
   }
 }
   

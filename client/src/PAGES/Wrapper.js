@@ -19,6 +19,9 @@ import UpdateProfile from '../components/profile/UpdateProfile';
 import UserProfile from '../components/profile/UserProfile';
 import Search from '../components/search/Search';
 
+import VerifyEmail from '../components/auth.js/verify/VerifyEmail';
+import ChangeEmail from '../components/auth.js/verify/ChangeEmail';
+
 
 
 
@@ -39,6 +42,8 @@ function Wrapper() {
 
       
       <Route path="/verifyDoor" component={VerifyDoor} />
+      <Route path="/verifyEmail/:token" component={VerifyEmail} />
+      <Route path="/changeEmail" component={ChangeEmail} />
 
 
       <Route path="/forgotten" component={Forgotten} />

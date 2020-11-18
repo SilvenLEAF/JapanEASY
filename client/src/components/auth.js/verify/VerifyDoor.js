@@ -2,8 +2,10 @@ import M from 'materialize-css'
 import '../../../styles/VerifyDoor.scss';
 
 
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react'
+import { Link, useHistory } from 'react-router-dom'
+
+import { AuthContext } from '../../../contexts/subContexts/AuthContext'
 
 
 
@@ -14,6 +16,12 @@ function VerifyDoor() {
   }, [])
 
 
+  const { userData, setUserData } = useContext(AuthContext);
+  const history = useHistory();
+
+
+  if(!userData) history.push('/login');
+  if(userData && userData.isVerified) history.push('/');
   
   return (
     <div className="container myVerifyDoorPage">
@@ -29,7 +37,7 @@ function VerifyDoor() {
 
       <div className="myBtnsHolder right-align">
         <button className="btn myBtn myCornerless">Verify Account</button>
-        <button className="btn mySecondaryBtn myCornerless">Change Email</button>
+        <Link to="/changeEmail" className="btn mySecondaryBtn myCornerless">Change Email</Link>
       </div>
       
     </div>

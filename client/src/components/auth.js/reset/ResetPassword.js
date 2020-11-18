@@ -74,7 +74,7 @@ function ResetPassword() {
           title: 'Password Updated'
         })
   
-        history.pushState('/login');
+        history.push('/login');
       }
   
   
