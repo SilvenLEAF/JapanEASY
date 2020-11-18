@@ -25,7 +25,7 @@ function Home() {
         </h1>
         
         <div className="myLandingDescription">
-          This is the SOUL and LING HUN of my future app. It's the spirit and core for all my future self. It's LING HUN, the SOUL of my future.
+          This is the SOUL and LING HUN of my future app. It's the spirit and core for all my future self. It's LING HUN, the SOUL of my future. It's created by SilvenLEAF. I am SilvenLEAF.
         </div>
 
         <div className="myLandingBtnHolder">
