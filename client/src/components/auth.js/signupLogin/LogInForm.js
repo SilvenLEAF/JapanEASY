@@ -66,9 +66,9 @@ function LogInForm() {
       console.log(loggedInUserData); 
       
       if(loggedInUserData.user){
-        setUserData(loggedInUserData.user);
         
         setTimeout(()=>{
+          setUserData(loggedInUserData.user);
           history.push('/');
         }, 3000)
       } 

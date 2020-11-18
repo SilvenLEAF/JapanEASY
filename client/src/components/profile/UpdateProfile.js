@@ -73,6 +73,9 @@ function UpdateProfile() {
       })
 
 
+      setTimeout(()=>{        
+        history.push('/profile')
+      }, 3000)
 
     } else {
       
@@ -86,14 +89,14 @@ function UpdateProfile() {
   
   
       const data = await res.json();
-      setUserData(data);
+      
+      setTimeout(()=>{
+        setUserData(data);
+        history.push('/profile')
+      }, 3000)
     }
 
 
-    
-    setTimeout(()=>{
-      history.push('/profile')
-    }, 3000)
   }
   
 

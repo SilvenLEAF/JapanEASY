@@ -145,7 +145,7 @@ function UserProfile(props) {
             <i className="fa fa-info-circle"></i> Verified
           </div>
           <div className="myProfileInfoAnswer">
-          { item.isVerified ? `Unverified account` : `Verified account` }
+          { item.isVerified ? `Verified account` : `Unverified account` }
           </div>
         </div>
 
