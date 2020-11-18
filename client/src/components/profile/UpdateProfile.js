@@ -91,7 +91,8 @@ function UpdateProfile() {
   }
   
 
-  if(!userData) history.push('/login')
+  if(!userData) history.push('/login');
+  if(userData && !userData.isVerified) history.push('/verifyDoor');
 
   return (
     <div id="myUpdateProfilePage" className="container myProfilePage">      

@@ -3,10 +3,11 @@ import './../../../styles/Form.scss'
 
 
 
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useHistory, useParams } from 'react-router-dom';
 
 
+import { AuthContext } from '../../../contexts/subContexts/AuthContext';
 import { Toast } from '../../../helpers/MyAlerts';
 
 
@@ -24,7 +25,7 @@ function ResetPassword() {
     M.AutoInit();
   }, [])
 
-
+  const { userData } = useContext(AuthContext);
 
   const { token } = useParams();
   const history = useHistory();
@@ -109,7 +110,7 @@ function ResetPassword() {
 
 
 
-  
+  if(userData) history.push('/');
 
 
 

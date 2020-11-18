@@ -23,6 +23,7 @@ function VerifyDoor() {
   if(!userData) history.push('/login');
   if(userData && userData.isVerified) history.push('/');
   
+  
   return (
     <div className="container myVerifyDoorPage">
       <h5 className="pageTitle red-text center-align">Account NOT verified!</h5>

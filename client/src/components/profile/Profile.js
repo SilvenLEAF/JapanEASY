@@ -44,7 +44,8 @@ function Profile() {
   }
 
 
-  if(!userData) history.push('/login')
+  if(!userData) history.push('/login');
+  if(userData && !userData.isVerified) history.push('/verifyDoor');
 
   return (
     <div className="container myProfilePage">      

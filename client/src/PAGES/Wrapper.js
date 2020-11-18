@@ -6,7 +6,7 @@ import LogInForm from '../components/auth.js/signupLogin/LogInForm';
 import SignUpForm from '../components/auth.js/signupLogin/SignUpForm';
 
 
-import Forgotten from '../components/auth.js/reset/ForgottenForm';
+import ForgottenForm from '../components/auth.js/reset/ForgottenForm';
 import ResetPassword from '../components/auth.js/reset/ResetPassword';
 import VerifyDoor from '../components/auth.js/verify/VerifyDoor';
 
@@ -46,9 +46,9 @@ function Wrapper() {
       <Route path="/changeEmail" component={ChangeEmail} />
 
 
-      <Route path="/forgotten" component={Forgotten} />
+      <Route path="/forgotten" component={ForgottenForm} />
       <Route path="/reset/:token" component={ResetPassword} />
-
+ 
 
 
       <Route path="/profile" component={Profile} />

@@ -3,10 +3,11 @@ import './../../../styles/Form.scss'
 
 
 
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react'
+import { Link, useHistory } from 'react-router-dom';
 
 
+import { AuthContext } from '../../../contexts/subContexts/AuthContext';
 import { Toast } from '../../../helpers/MyAlerts'
 
 
@@ -26,6 +27,9 @@ function Forgotten() {
 
 
 
+
+  const { userData } = useContext(AuthContext);
+  const history = useHistory();
 
 
 
@@ -96,6 +100,7 @@ function Forgotten() {
 
 
 
+  if(userData) history.push('/');
 
 
   return (

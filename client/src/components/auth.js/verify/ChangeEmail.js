@@ -104,6 +104,7 @@ function ChangeEmail() {
 
 
   if(!userData) history.push('/login')
+  if(userData && userData.isVerified) history.push('/');
 
 
   return (

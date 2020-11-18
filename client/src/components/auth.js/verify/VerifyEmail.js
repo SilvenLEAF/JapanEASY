@@ -4,10 +4,12 @@ import '../../../styles/VerifyDoor.scss';
 
 
 
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useHistory, useParams } from 'react-router-dom';
 
 
+
+import { AuthContext } from '../../../contexts/subContexts/AuthContext'
 import { Toast } from '../../../helpers/MyAlerts';
 
 
@@ -26,6 +28,7 @@ function VerifyEmail() {
   }, [])
 
 
+  const { userData } = useContext(AuthContext);
 
   const { token } = useParams();
   const history = useHistory();
@@ -99,8 +102,8 @@ function VerifyEmail() {
 
 
 
-  
-
+  if(!userData) history.push('/login');
+  if(userData && userData.isVerified) history.push('/');
 
 
   return (
