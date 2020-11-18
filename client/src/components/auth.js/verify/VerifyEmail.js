@@ -102,7 +102,7 @@ function VerifyEmail() {
 
 
 
-  if(!userData) history.push('/login');
+  
   if(userData && userData.isVerified) history.push('/');
 
 
