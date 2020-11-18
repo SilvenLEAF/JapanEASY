@@ -74,10 +74,10 @@ module.exports.request_verification = async (req, res, next)=>{
         to: user.local.email,
         from: 'noreplyleaf@gmail.com',
 
-        subject: `Password Reset`,
+        subject: `Verify Account`,
         text: `You are receiving this because you (or someone else) have requested the verification of the email for your account.\n\n
         Please click on the following link, or paste this into your browser to complete the process: \n\n
-        ${ 'http://' + req.headers.host + '/reset/' + token } \n\n
+        ${ 'http://' + req.headers.host + '/verifyEmail/' + token } \n\n
         If you did not request this, please ignore this email. \n`
       }
 

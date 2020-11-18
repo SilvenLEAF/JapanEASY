@@ -24,6 +24,11 @@ function VerifyDoor() {
 
   const handleRequestVerification = async ()=>{
     try {
+      Toast.fire({
+        icon: 'info',
+        title: 'Please wait...'
+      })
+      
       const response = await fetch('/requestVerification', {
         method: 'POST',
         headers: {
