@@ -49,33 +49,35 @@ function VerifyEmail() {
         title: 'Please wait...'
       })
       
+      setTimeout(()=>{
+        const response = await fetch('/verifyEmail', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ token })
+        });
+    
+        const data = await response.json();
+  
+        console.log(data);
+  
+  
+        if(data.error) {
+          setError(data.msg);
+        } else {
+          Toast.fire({
+            icon: 'success',
+            title: 'Account Verified'
+          })
+          
+          setTimeout(()=>{
+            setUserData(data);
+            history.push('/');
+          }, 3000)
+        }
+      }, 3000)
       
-      const response = await fetch('/verifyEmail', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ token })
-      });
-  
-      const data = await response.json();
-
-      console.log(data);
-
-
-      if(data.error) {
-        setError(data.msg);
-      } else {
-        setUserData(data);
-        Toast.fire({
-          icon: 'success',
-          title: 'Account Verified'
-        })
-  
-        setTimeout(()=>{
-          history.push('/');
-        }, 3000)
-      }
   
   
   
