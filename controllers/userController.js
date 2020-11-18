@@ -36,7 +36,7 @@ module.exports.change_email = async (req, res, next)=>{
 
     await User.findByIdAndUpdate(req.user._id, { 'local.email': email });
     const updatedUser = await User.findById(req.user._id);
-    req.json(updatedUser);
+    res.json(updatedUser);
   } catch(err){
     next(err, req, next);
   }

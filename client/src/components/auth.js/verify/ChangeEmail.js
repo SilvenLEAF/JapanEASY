@@ -55,7 +55,7 @@ function ChangeEmail() {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ email })
+        body: JSON.stringify({ userId: userData._id, email })
       });
   
       const data = await response.json();
@@ -72,6 +72,10 @@ function ChangeEmail() {
           icon: 'success',
           title: 'Email successfully changed'
         })
+
+        setTimeout(()=>{
+          history.push('/verifyDoor')
+        }, 3000);
 
 
       }

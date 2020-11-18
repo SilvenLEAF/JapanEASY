@@ -148,7 +148,7 @@ module.exports.verify_email = async (req, res, next)=>{
     const savedUser = await user.save();
     
     
-    res.json({ msg: `Email verified` });
+    res.json(savedUser);
 
 
 
