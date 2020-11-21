@@ -109,6 +109,10 @@ app.use(require('./routes/mailRoutes/VerifyEmailRoute'));
 
 
 
+//                  url shortener routes
+app.use('/shortURL', require('./routes/ShortURLRoute'));
+
+
 
 // CATCH ALL HANDLER
 app.get('*', (req, res, next)=>{
