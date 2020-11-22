@@ -1,16 +1,21 @@
 @import '../../variables.scss';
 
 
+.myLoaderPageHolder {
+  
+  .myLeaderHolder{    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+  }
 
+}
 
 
 
 .myLoaderHolder{
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 70vh;
 
   .myLoadingTitle {
     color: $themeColor;
@@ -21,6 +26,8 @@
     display: flex;
     flex-flow: column;
     align-items: center;
+
+    height: 250px;
   }
 
 

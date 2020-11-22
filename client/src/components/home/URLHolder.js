@@ -12,11 +12,11 @@ import { usePaginatedQuery } from 'react-query'
 
 
 import { AuthContext } from '../../contexts/subContexts/AuthContext'
-import { AllUserContext } from '../../contexts/subContexts/AllUserContext'
+import { URLContext } from '../../contexts/subContexts/URLContext'
 
 
 
-import UserListItem from './UserListItem'
+import UserListItem from './URLItem'
 import MyLoader from '../../helpers/MyLoader';
 
 
@@ -24,21 +24,21 @@ import MyLoader from '../../helpers/MyLoader';
 
 
 
-const getAllUsers = async ()=>{
+const getAllUrls = async ()=>{
   
 
-  const allUserRes = await fetch('/user/all');
-  const allUserData = await allUserRes.json();
+  const allUrlRes = await fetch('/shortURL/all');
+  const allUrlData = await allUrlRes.json();
 
-  console.log(allUserData);
-  return allUserData
+  console.log(allUrlData);
+  return allUrlData
 }
 
 
 
 
 
-function UserList() {
+function URLHolder() {
   useEffect(()=>{
     M.AutoInit();
   }, [])
@@ -48,25 +48,19 @@ function UserList() {
 
 
   const { userData, setUserData } = useContext(AuthContext)
-  const { allUsers, setAllUsers } = useContext(AllUserContext)
+  const { allUrls, setAllUrls } = useContext(URLContext)
   const history = useHistory()
   
 
 
-  const { resolvedData, latestData, status } = usePaginatedQuery("allusers", getAllUsers)
-  if(resolvedData) setAllUsers(resolvedData);
+  const { resolvedData, latestData, status } = usePaginatedQuery("allurls", getAllUrls)
+  if(resolvedData) setAllUrls(resolvedData);
 
 
 
 
-
-  if(!userData) history.push('/login');
-  if(userData && !userData.isVerified) history.push('/verifyDoor');
-
-  return !allUsers[0] ?  (
-    <div className="myLoaderPageHolder">
-      <MyLoader/>
-    </div>
+  return !allUrls[0] ?  (
+    <MyLoader/>
   ) : (
     <div className="container myUserListPage" >      
       <h6 className="blue-text">All users</h6>
@@ -74,7 +68,7 @@ function UserList() {
 
       <ul>
         {
-          allUsers[0] && allUsers.map((item, index)=>{
+          allUrls[0] && allUrls.map((item, index)=>{
             return (
               <Link to={ "/userProfile/" + index } key={ index } >
                 <UserListItem item={ item } />
@@ -90,4 +84,4 @@ function UserList() {
   )
 }
 
-export default UserList
+export default URLHolder

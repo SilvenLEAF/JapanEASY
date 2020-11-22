@@ -22,7 +22,9 @@ function ActionPage() {
   
   return (
     <div className="container" >
-      <MyWelcome title="Welcome!"/>      
+      <div className="myLoaderPageHolder">
+        <MyWelcome title="Welcome!"/>      
+      </div>
     </div>
   )
 }
