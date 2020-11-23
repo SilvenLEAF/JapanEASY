@@ -79,3 +79,30 @@ module.exports.create_short_url = async (req, res, next)=>{
     next(err, req, res);
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+/* ---------------------------------------------
+.             DELETE SHORT-URL
+--------------------------------------------- */
+module.exports.delete_short_url = async (req, res, next)=>{
+  try {
+    const { urlId } = req.body;
+
+    const deletedShortURL = await ShortURL.findByIdAndRemove(urlId);
+
+    res.json(deletedShortURL);
+
+
+  } catch (err) {
+    next(err, req, res);
+  }
+}

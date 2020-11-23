@@ -21,7 +21,10 @@ import Contact from '../components/contact/Contact';
 import UserList from '../components/profile/UserList';
 import UpdateProfile from '../components/profile/UpdateProfile';
 import UserProfile from '../components/profile/UserProfile';
+
 import ActionPage from '../components/actionPage/ActionPage';
+import LeafRoom from '../components/leafRoom/LeafRoom'
+import RoleDoor from '../components/leafRoom/RoleDoor'
 
 import VerifyEmail from '../components/auth.js/verify/VerifyEmail';
 import ChangeEmail from '../components/auth.js/verify/ChangeEmail';
@@ -40,6 +43,8 @@ function Wrapper() {
 
         <Route exact path="/" component={Home} />
         
+        <Route path="/roleDoor" component={RoleDoor} />
+        <Route path="/leafRoom" component={LeafRoom} />
         <Route path="/actionPage" component={ActionPage} />
         
         <Route path="/login" component={Login} />
