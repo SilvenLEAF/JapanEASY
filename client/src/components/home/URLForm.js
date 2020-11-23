@@ -32,12 +32,18 @@ function URLForm() {
 
   
   const [fullURL, setFullURL] = useState('');
+  const [shortURL, setShortURL] = useState('');
   const [error, setError] = useState('');
 
 
 
   const handleSubmit = async (e)=>{
     e.preventDefault();
+
+    Toast.fire({
+      icon: 'info',
+      title: 'Please wait...'
+    })
 
   
     try {
@@ -60,7 +66,8 @@ function URLForm() {
         setFullURL('');
         
         const allUrlList = allUrls;
-        allUrlList.push(data);
+        allUrlList.shift(data);
+        setShortURL(data.short);
         setAllUrls(...allUrlList)
                 
 
@@ -127,7 +134,18 @@ function URLForm() {
 
         
 
-        
+        {
+          shortURL && (
+            <div className="myDefaultFormFooter">
+              <h6>
+                Your URL is <a href={ '/shortURL/' + shortURL } target="_blank" rel="noopener noreferrer">
+                  { shortURL }
+                </a>
+              </h6>
+              
+            </div>
+          )
+        }
       </form>
     </div>
   )

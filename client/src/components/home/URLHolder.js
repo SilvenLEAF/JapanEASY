@@ -63,16 +63,16 @@ function URLHolder() {
     <MyLoader/>
   ) : (
     <div className="container myUserListPage" >      
-      <h6 className="blue-text">All users</h6>
+      <h6 className="blue-text">All Shortened URLs (Click to visit)</h6>
 
 
       <ul>
         {
           allUrls[0] && allUrls.map((item, index)=>{
             return (
-              <Link to={ "/userProfile/" + index } key={ index } >
+              <a target="_blank" rel="noopener noreferrer" href={ "/shortURL/" + item.short } key={ index } >
                 <UserListItem item={ item } />
-              </Link>
+              </a>
             )
           })
         }

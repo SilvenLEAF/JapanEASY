@@ -10,7 +10,7 @@ function URLItem({ item }) {
       </div>
 
       <p className="grey-text">
-        {item.long}
+        {item.full}
       </p>
     </div>
 
