@@ -5,7 +5,7 @@ function URLItem({ item }) {
     <li>
     <div className="myUserProfileIcon" style={{background: `url(${ item.profileImage || "/Logo.png" }) center/cover` }}></div>
     <div>
-      <div className="myUserName">
+      <div className="myUserName blue-text">
         {item.short}
       </div>
 

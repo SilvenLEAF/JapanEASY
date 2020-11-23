@@ -26,7 +26,7 @@ module.exports = DemoStrategy = new Strategy(
 
 
   (req, email, password, done)=>{    
-    console.log(req.body);
+    
 
     const demoEmail = email;
     const demoPassword = password;

@@ -41,14 +41,10 @@ module.exports.redirect_to_full_url_from_short_url = async (req, res, next)=>{
 .             GET ALL SHORT-URLs
 --------------------------------------------- */
 module.exports.get_all_short_urls = async (req, res, next)=>{
-  try {
-    console.log('sending all urls...')
+  try {    
     const allShortURLs = await ShortURL.find();
     
-    console.log(allShortURLs)
     res.json(allShortURLs.reverse());
-
-
 
   } catch (err) {
     next(err, req, res);
