@@ -66,11 +66,9 @@ function URLForm() {
         setError(data.msg);
       } else {
         setUnrefinedFullURL('');
-        
-        const allUrlList = allUrls;
-        allUrlList.shift(data);
+       
         setShortURL(data.short);
-        setAllUrls(...allUrlList)
+        
                 
 
       }
