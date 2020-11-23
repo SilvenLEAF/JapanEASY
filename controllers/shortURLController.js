@@ -42,9 +42,12 @@ module.exports.redirect_to_full_url_from_short_url = async (req, res, next)=>{
 --------------------------------------------- */
 module.exports.get_all_short_urls = async (req, res, next)=>{
   try {
-    const allShortURLs = await ShortURL.find({});
+    console.log('sending all urls...')
+    const allShortURLs = await ShortURL.find();
     
+    console.log(allShortURLs)
     res.json(allShortURLs.reverse());
+
 
 
   } catch (err) {

@@ -59,8 +59,8 @@ function URLForm() {
       } else {
         setFullURL('');
         
-        const allUrlList = [...allUrls];
-        allUrlList.shift(data);
+        const allUrlList = allUrls;
+        allUrlList.push(data);
         setAllUrls(...allUrlList)
                 
 
@@ -105,7 +105,7 @@ function URLForm() {
 
 
 
-        <div className="myInputHolder">            
+        <div className="myInputHolder myURLFormBtnHolder">            
           <label htmlFor="fullURL">Type your URL <span className="red-text">(Required)</span></label>
           <div>
             <input type="text" name="fullURL" value={ fullURL } onChange={ e=> setFullURL(e.target.value) } required />

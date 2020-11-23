@@ -2,12 +2,50 @@
 
 
 .myDefaultForm.myURLForm {
-  margin: 0;
+
+  .myBtnsHolder{
+    margin: 0;
+    .btn{
+      margin: 0;
+    }
+  }
+
+  .myInputHolder {
+    
+    
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+      box-shadow: $awesomeShadow;
+
+
+      margin: 0;
+      width: 100%;
+      padding: 0px 15px;
+      border-radius: 20px;
+      
+
+      background-color: #f1f1f1;
+
+
+
+      input {    
+        background-color: #f1f1f1;
+        border: none;
+      }
+
+
+
+
+    }
+
+
+
+
+
+  }
 
   
-}
-
-body {
-  background: red;
-  // display: none;
 }
