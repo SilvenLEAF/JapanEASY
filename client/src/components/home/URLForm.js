@@ -47,13 +47,15 @@ function URLForm() {
 
   
     try {
-
+      const regeX =/http(s)?:\/\//
+      const refinedFullURL = (fullURL.search(regeX) !== -1) ? fullURL : "https://" + fullURL
+    
       const response = await fetch('/shortURL', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ fullURL })
+        body: JSON.stringify({ refinedFullURL })
       });
   
       const data = await response.json();
