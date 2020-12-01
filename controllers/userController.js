@@ -90,7 +90,7 @@ module.exports.update_account = async (req, res, next)=>{
 
     await User.findByIdAndUpdate(userId, req.body);
     const updatedUser = await User.findById(req.user._id);
-    req.json(updatedUser);
+    res.json(updatedUser);
   }catch(err){
     next(err, req, res);
   }
