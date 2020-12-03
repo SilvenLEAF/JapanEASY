@@ -31,7 +31,7 @@ function URLForm() {
   const { allUrls, setAllUrls } = useContext(URLContext);
 
   
-  const [fullURL, setFullURL] = useState('');
+  const [unrefinedFullURL, setUnrefinedFullURL] = useState('');
   const [shortURL, setShortURL] = useState('');
   const [error, setError] = useState('');
 
@@ -47,7 +47,9 @@ function URLForm() {
 
   
     try {
-
+      const regeX =/http(s)?:\/\//
+      const fullURL = (unrefinedFullURL.search(regeX) !== -1) ? unrefinedFullURL : "https://" + unrefinedFullURL
+    
       const response = await fetch('/shortURL', {
         method: 'POST',
         headers: {
@@ -63,12 +65,10 @@ function URLForm() {
       if(data.error){
         setError(data.msg);
       } else {
-        setFullURL('');
-        
-        const allUrlList = allUrls;
-        allUrlList.shift(data);
+        setUnrefinedFullURL('');
+       
         setShortURL(data.short);
-        setAllUrls(...allUrlList)
+        
                 
 
       }
@@ -115,7 +115,7 @@ function URLForm() {
         <div className="myInputHolder myURLFormBtnHolder">            
           <label htmlFor="fullURL">Type your URL <span className="red-text">(Required)</span></label>
           <div>
-            <input type="text" name="fullURL" value={ fullURL } onChange={ e=> setFullURL(e.target.value) } required />
+            <input type="text" name="fullURL" value={ unrefinedFullURL } onChange={ e=> setUnrefinedFullURL (e.target.value) } required />
           </div>
         </div>
 

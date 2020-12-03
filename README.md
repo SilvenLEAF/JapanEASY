@@ -1,5 +1,5 @@
 
-# URLShortenerAPP
+# URLShortener
 Shorten your crazy long URLs into sweet and short URLs with just a simple click on your fingertip.
 
 ***
