@@ -94,6 +94,14 @@ import verifyEmailRoute from './routes/mailRoutes/VerifyEmailRoute'
 app.use(verifyEmailRoute);
 
 
+
+
+//                  url shortener routes
+import urlShortenerRoute from './routes/ShortURLRoute';
+app.use('/shortURL', urlShortenerRoute);
+
+
+
 // CATCH-ALL HANDLER
 app.get('*', (req: Request, res: Response, next: NextFunction)=>{
   res.sendFile(path.join(__dirname, 'client/build/index.html'));
