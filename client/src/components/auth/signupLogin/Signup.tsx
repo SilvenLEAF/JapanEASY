@@ -106,7 +106,7 @@ function Signup() {
       
 
     >
-      <div className="myAuthAppName">LingHun7.0</div>
+      <div className="myAuthAppName">URLShortener</div>
       <div className="myAuthTitle">Sign up a new account</div>
 
 

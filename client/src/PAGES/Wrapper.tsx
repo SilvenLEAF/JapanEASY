@@ -4,6 +4,7 @@ import { Route, Switch, useLocation } from 'react-router-dom';
 
 
 
+
 import Login from '../components/auth/signupLogin/Login';
 import Signup from '../components/auth/signupLogin/Signup';
 import LogInForm from '../components/auth/signupLogin/LogInForm';
@@ -21,7 +22,10 @@ import Contact from '../components/contact/Contact';
 import UserList from '../components/profile/UserList';
 import UpdateProfile from '../components/profile/UpdateProfile';
 import UserProfile from '../components/profile/UserProfile';
+
 import ActionPage from '../components/actionPage/ActionPage';
+import LeafRoom from '../components/leafRoom/LeafRoom';
+import RoleDoor from '../components/leafRoom/RoleDoor';
 
 import VerifyEmail from '../components/auth/verify/VerifyEmail';
 import ChangeEmail from '../components/auth/verify/ChangeEmail';
@@ -38,8 +42,10 @@ function Wrapper() {
       <Switch location={ location } key={ location.key } >
 
 
-        <Route exact path="/" component={Home} />
+      <Route exact path="/" component={Home} />
         
+        <Route path="/roleDoor" component={RoleDoor} />
+        <Route path="/leafRoom" component={LeafRoom} />
         <Route path="/actionPage" component={ActionPage} />
         
         <Route path="/login" component={Login} />
@@ -63,7 +69,6 @@ function Wrapper() {
         <Route path="/userProfile/:index" component={UserProfile} />
         <Route path="/allUsers" component={UserList} />
         <Route path="/contact" component={Contact} />
-
 
 
 

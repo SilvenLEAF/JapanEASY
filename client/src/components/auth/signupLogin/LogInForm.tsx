@@ -109,7 +109,7 @@ function LogInForm() {
       
 
     >
-      <div className="myAuthAppName">LingHun7.0</div>
+      <div className="myAuthAppName">URLShortener</div>
       <div className="myAuthTitle">Log in to your account</div>
       
 

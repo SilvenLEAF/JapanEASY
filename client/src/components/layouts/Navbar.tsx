@@ -38,7 +38,7 @@ function Navbar() {
     <nav id="myNavbar" className="nav nav-wrapper scrollspy">
       <div className="container">
 
-        <Link to= "/" className= "brand-logo">LingHun7.0</Link>
+        <Link to= "/" className= "brand-logo">URLShortener</Link>
         <div className="sidenav-trigger hide-on-large-only" data-target= "mobilenav" id="myHam">
             <i className="fas fa-hamburger"></i>
         </div>

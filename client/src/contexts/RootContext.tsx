@@ -1,5 +1,6 @@
 import React from 'react'
 import AllUserContextProvider from './subContexts/AllUserContext'
+import URLContextProvider from './subContexts/URLContext'
 
 
 
@@ -14,7 +15,11 @@ function RootContext(props: propsInterface) {
     <>
       
       <AllUserContextProvider>
-        { props.children }
+        <URLContextProvider>
+          
+          { props.children }
+
+        </URLContextProvider>
       </AllUserContextProvider>
     
     </>
