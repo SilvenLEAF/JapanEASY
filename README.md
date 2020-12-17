@@ -34,9 +34,9 @@ Shorten your crazy long URLs into sweet and short URLs with just a simple click 
 
 
 ## Technologies
-**BackEND:**  *NodeJS, ExpressJS, PassportJS (OAUTH2.0), REST Api, nodemailer, crypto module*
+**BackEND:**  *TypeScript, NodeJS, ExpressJS, PassportJS (OAUTH2.0), REST Api, nodemailer, crypto module*
 
-**FrontEND:** *React, SASS, Materialize, Hooks and Context API*
+**FrontEND:** *TypeScript, React, SASS, Materialize, Hooks and Context API*
 
 **Database:** *MongoDB (with mongoose)*
 
